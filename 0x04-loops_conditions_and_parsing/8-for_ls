@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# This script displays the content of the current directory in a list format.
+# It filters out hidden files and displays only the part of the name after the first dash.
+# For example, a file named "example-file.txt" will be displayed as "file.txt".
+
+mylist=$(ls)
+
+for i in $mylist; do
+  echo "$i" | cut -d '-' -f2
+done

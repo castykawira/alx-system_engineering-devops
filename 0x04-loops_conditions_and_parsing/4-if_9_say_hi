@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-# This script displays "Best School" 10 times, but for the 9th iteration,
-displays "Best School" and then "Hi" on new lines.
+# Display "Best School" 10 times; on the 9th iteration, add "Hi" on a new line
 
 counter=1
 
@@ -13,3 +12,4 @@ do
     fi
     ((counter++))
 done
+

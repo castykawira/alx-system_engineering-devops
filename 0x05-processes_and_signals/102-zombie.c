@@ -3,8 +3,8 @@
 #include <unistd.h>
 
 /**
- * infinite_while - Function for an infinite while loop
- * Return: Always 0
+ * infinite_while - creates an infinite loop to make the program hang
+ * Return: always 0
  */
 int infinite_while(void)
 {
@@ -16,22 +16,22 @@ int infinite_while(void)
 }
 
 /**
- * main - Entry point of the program
+ * main - creates 5 zombie processes
  * Return: always 0
  */
 int main(void)
 {
-	pid_t pid;
 	int i;
+	pid_t zombie;
 
 	for (i = 0; i < 5; i++)
 	{
-		pid = fork();
-		if (!pid)
+		zombie = fork();
+		if (!zombie)
 			return (0);
-		printf("Zombie process created, PID: %d\n", pid);
+		printf("Zombie process created, PID: %d\n", zombie);
 	}
 
 	infinite_while();
-	return (0;
-			}
+	return (0);
+}

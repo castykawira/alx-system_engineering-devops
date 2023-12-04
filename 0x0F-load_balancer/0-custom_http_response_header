@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 # Configure Nginx with custom HTTP response header
-
 server_name=$(hostname)
 sudo apt-get update -y
 sudo apt-get install nginx -y
@@ -13,14 +12,11 @@ echo "server {
 
     root /var/www/html;
 
-    # Add index.php to the list if you are using PHP
     index index.html index.htm index.nginx-debian.html;
 
     server_name _;
 
     location / {
-        # First attempt to serve request as file, then
-        # as a directory, then fall back to displaying a 404.
         try_files \$uri \$uri/ =404;
     }
 
@@ -31,10 +27,10 @@ echo "server {
     }
 
     location /redirect_me {
-        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
+        return 301 https://www.youtube.com/watch?v=CDdvReNKKuk;
     }
 
-    add_header X-Served-By $server_name;
+    add_header X-Served-By ${server_name};
 	
 }
 " > /etc/nginx/sites-enabled/default

@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Configure Nginx with custom HTTP response header
+# Update and upgrade system packages and install 
+apt-get -y update nginx
+apt-get -y install nginx
+
+echo 'Hello World!' > /var/www/html/index.html
+echo "Ceci n'est pas une page" > /var/www/html/404.html
+
+sed -i "/listen \[::]:80 default_server;/a\	rewrite ^/redirect_me/?.*$ https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;" /etc/nginx/sites-available/default
+sed -i "/listen \[::]:80 default_server;/a\	error_page 404 /404.html;" /etc/nginx/sites-available/default
+sed -i '/http {/a\\n\tadd_header X-Served-By '"${HOSTNAME}"';' /etc/nginx/nginx.conf
+
+service nginx restart

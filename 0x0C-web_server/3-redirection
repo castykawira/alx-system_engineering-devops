@@ -1,13 +1,11 @@
 #!/usr/bin/env bash
-
 # Update package list and install nginx
-apt-get -y update
-apt-get -y install nginx
 
-echo "Hello World!" > /var/www/html/index.html
+sudo apt-get update
+sudo apt-get install -y nginx
 
-# Add a location block for /redirect_me with a 301 permanent redirect
-sed -i '/server_name _;/a\\location /redirect_me {\return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\}' /etc/nginx/sites-available/default
+echo "Hello World!" | sudo tee /var/www/html/index.html
+string_for_replacement="server_name _;\n\trewrite ^\/redirect_me https://www.youtube.com/watch?v=CDdvReNKKuk permanent;"
+sudo sed -i "s/server_name _;/$string_for_replacement/" /etc/nginx/sites-enabled/default
 
-# Restart Nginx to apply changes
-service nginx restart
+sudo service nginx restart
